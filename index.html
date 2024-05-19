@@ -2,33 +2,30 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Bilgisayar Parçaları Sürükle Bırak Oyunu</title>
+    <title>Bilgisayar Kasası Toplama Oyunu</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <div class="container">
-        <h1>Bilgisayar Parçaları Sürükle Bırak Oyunu</h1>
-        <div id="items" class="items">
-            <div id="cpu" class="draggable" draggable="true">
-                <img src="https://www.webtekno.com/images/editor/default/0002/50/1ff00d12897bc450b35defc7415b1e8f9cf750d0.jpeg" alt="İşlemci">
-            </div>
-            <div id="gpu" class="draggable" draggable="true">
-                <img src="https://m.media-amazon.com/images/I/613BCoiXc7L._AC_UF1000,1000_QL80_.jpg" alt="Ekran Kartı">
-            </div>
-            <div id="ram" class="draggable" draggable="true">
-                <img src="https://m.media-amazon.com/images/I/61XmhmEup8L._AC_UF1000,1000_QL80_.jpg" alt="Ram">
-            </div>
-            <div id="cpu" class="draggable" draggable="true">
-                <img src="https://www.teknostore.com/image/cache/data/resimler/logitech-m100r-usb-kablolu-mouse-1880-682x682.jpg" alt="Fare">
+    <div id="game-container">
+        <h1>Bilgisayar Kasası Toplama Oyunu</h1>
+        <div id="components">
+            <h2>Parçalar</h2>
+            <ul id="parts-list">
+                <li data-part="cpu">CPU</li>
+                <li data-part="gpu">GPU</li>
+                <li data-part="ram">RAM</li>
+                <li data-part="motherboard">Anakart</li>
+                <li data-part="psu">Güç Kaynağı</li>
+                <li data-part="storage">Depolama</li>
+                <li data-part="case">Kasa</li>
+            </ul>
+        </div>
+        <div id="case">
+            <h2>Kasa</h2>
+            <div id="case-contents">
+                <!-- Parçalar burada görünecek -->
             </div>
         </div>
-        <div id="slots" class="slots">
-            <div id="İşlemci" class="droppable">CPU Slot</div>
-            <div id="Ekran kartı" class="droppable">GPU Slot</div>
-            <div id="Ram" class="droppable">RAM Slot</div>
-            <div id="Fare" class="droppable">RAM Slot</div>
-        </div>
-        <div id="message" class="message"></div>
     </div>
     <script src="script.js"></script>
 </body>

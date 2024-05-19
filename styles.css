@@ -1,55 +1,47 @@
 body {
     font-family: Arial, sans-serif;
-    background-color: #f0f0f0;
-    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
     margin: 0;
+    background-color: #f0f0f0;
+}
+
+#game-container {
+    text-align: center;
+}
+
+#components, #case {
+    display: inline-block;
+    vertical-align: top;
+    margin: 10px;
+}
+
+#parts-list {
+    list-style-type: none;
     padding: 0;
 }
 
-.container {
-    max-width: 800px;
-    margin: 20px auto;
+#parts-list li {
+    padding: 10px;
     background-color: #fff;
     border: 1px solid #ccc;
-    padding: 20px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    border-radius: 10px;
+    margin: 5px;
+    cursor: pointer;
 }
 
-h1 {
-    color: #333;
+#case-contents {
+    width: 200px;
+    height: 300px;
+    border: 2px dashed #ccc;
+    position: relative;
 }
 
-.items, .slots {
-    display: flex;
-    justify-content: space-around;
-    margin: 20px 0;
-}
-
-.draggable img {
-    width: 100px;
-    height: auto;
-    cursor: grab;
-}
-
-.droppable {
-    width: 150px;
-    height: 150px;
-    border: 2px dashed #333;
-    border-radius: 10px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background-color: #fafafa;
-    transition: background-color 0.3s;
-}
-
-.droppable:hover {
-    background-color: #e0e0e0;
-}
-
-.message {
-    margin-top: 20px;
-    font-size: 18px;
-    color: #f00;
+.part {
+    position: absolute;
+    width: 90%;
+    padding: 10px;
+    background-color: #eee;
+    border: 1px solid #ddd;
 }
