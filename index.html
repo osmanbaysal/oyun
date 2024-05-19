@@ -1,95 +1,31 @@
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Bilgisayar Parçaları Sürükle Bırak Oyunu</title>
-    <style>
-        .container {
-            width: 80%;
-            margin: 0 auto;
-            text-align: center;
-        }
-
-        .draggable {
-            width: 100px;
-            height: 100px;
-            margin: 10px;
-            padding: 10px;
-            border: 1px solid #000;
-            display: inline-block;
-            cursor: grab;
-        }
-
-        .droppable {
-            width: 120px;
-            height: 120px;
-            margin: 10px;
-            padding: 10px;
-            border: 2px dashed #000;
-            display: inline-block;
-            vertical-align: top;
-        }
-    </style>
+    <link rel="stylesheet" href="styles.css">
 </head>
-
 <body>
     <div class="container">
         <h1>Bilgisayar Parçaları Sürükle Bırak Oyunu</h1>
-        <div id="items">
-            <div id="cpu" class="draggable" draggable="true">CPU</div>
-            <div id="gpu" class="draggable" draggable="true">GPU</div>
-            <div id="ram" class="draggable" draggable="true">RAM</div>
+        <div id="items" class="items">
+            <div id="cpu" class="draggable" draggable="true">
+                <img src="cpu.png" alt="CPU">
+            </div>
+            <div id="gpu" class="draggable" draggable="true">
+                <img src="gpu.png" alt="GPU">
+            </div>
+            <div id="ram" class="draggable" draggable="true">
+                <img src="ram.png" alt="RAM">
+            </div>
         </div>
-        <div id="slots">
+        <div id="slots" class="slots">
             <div id="cpu-slot" class="droppable">CPU Slot</div>
             <div id="gpu-slot" class="droppable">GPU Slot</div>
             <div id="ram-slot" class="droppable">RAM Slot</div>
         </div>
+        <div id="message" class="message"></div>
     </div>
-    <script>
-        // Draggable items
-        const draggables = document.querySelectorAll('.draggable');
-        // Droppable areas
-        const droppables = document.querySelectorAll('.droppable');
-
-        draggables.forEach(draggable => {
-            draggable.addEventListener('dragstart', dragStart);
-        });
-
-        droppables.forEach(droppable => {
-            droppable.addEventListener('dragover', dragOver);
-            droppable.addEventListener('drop', drop);
-        });
-
-        function dragStart(event) {
-            event.dataTransfer.setData('text/plain', event.target.id);
-            setTimeout(() => {
-                event.target.classList.add('hide');
-            }, 0);
-        }
-
-        function dragOver(event) {
-            event.preventDefault();
-        }
-
-        function drop(event) {
-            const id = event.dataTransfer.getData('text');
-            const draggableElement = document.getElementById(id);
-            const dropzone = event.target;
-
-            if ((id === 'cpu' && dropzone.id === 'cpu-slot') ||
-                (id === 'gpu' && dropzone.id === 'gpu-slot') ||
-                (id === 'ram' && dropzone.id === 'ram-slot')) {
-                dropzone.appendChild(draggableElement);
-                draggableElement.classList.remove('hide');
-                event.dataTransfer.clearData();
-            } else {
-                alert('Yanlış yer!');
-                draggableElement.classList.remove('hide');
-            }
-        }
-    </script>
+    <script src="script.js"></script>
 </body>
-
 </html>

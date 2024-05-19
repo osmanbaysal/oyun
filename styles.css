@@ -1,0 +1,55 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f0f0f0;
+    text-align: center;
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    max-width: 800px;
+    margin: 20px auto;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    padding: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+}
+
+h1 {
+    color: #333;
+}
+
+.items, .slots {
+    display: flex;
+    justify-content: space-around;
+    margin: 20px 0;
+}
+
+.draggable img {
+    width: 100px;
+    height: auto;
+    cursor: grab;
+}
+
+.droppable {
+    width: 150px;
+    height: 150px;
+    border: 2px dashed #333;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #fafafa;
+    transition: background-color 0.3s;
+}
+
+.droppable:hover {
+    background-color: #e0e0e0;
+}
+
+.message {
+    margin-top: 20px;
+    font-size: 18px;
+    color: #f00;
+}
