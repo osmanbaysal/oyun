@@ -25,7 +25,6 @@ function checkShortcut(event) {
     const pressedKeys = [];
     if (event.ctrlKey) pressedKeys.push('Control');
     if (event.shiftKey) pressedKeys.push('Shift');
-    if (event.altKey) pressedKeys.push('Alt');
     if (event.key && event.key.length === 1) pressedKeys.push(event.key.toLowerCase());
 
     const pressedKeysString = pressedKeys.join('+').toLowerCase();
