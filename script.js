@@ -19,6 +19,7 @@ function displayShortcut(index) {
     shortcutDisplay.textContent = shortcuts[index].keys.replace("+", " + ");
     messageDisplay.textContent = '';
     nextButton.style.display = 'none';
+    document.addEventListener('keydown', checkShortcut);
 }
 
 function checkShortcut(event) {
@@ -42,9 +43,7 @@ function checkShortcut(event) {
 function nextShortcut() {
     currentShortcutIndex = (currentShortcutIndex + 1) % shortcuts.length;
     displayShortcut(currentShortcutIndex);
-    document.addEventListener('keydown', checkShortcut);
 }
 
 displayShortcut(currentShortcutIndex);
-document.addEventListener('keydown', checkShortcut);
 nextButton.addEventListener('click', nextShortcut);
