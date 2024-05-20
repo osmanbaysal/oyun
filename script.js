@@ -5,8 +5,6 @@ const shortcuts = [
     { keys: "Control+z", description: "Geri al" },
     { keys: "Control+y", description: "İleri al" },
     { keys: "Control+a", description: "Tümünü Seç" },
-    { keys: "Control+p", description: "Yazdır" },
-    { keys: "Control+s", description: "Kaydet" }
 ];
 
 let currentShortcutIndex = 0;
