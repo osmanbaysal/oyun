@@ -3,7 +3,8 @@ const shortcuts = [
     { keys: "Control+v", description: "Yapıştır" },
     { keys: "Control+x", description: "Kes" },
     { keys: "Control+z", description: "Geri al" },
-    { keys: "Control+y", description: "İleri al" }
+    { keys: "Control+y", description: "İleri al" },
+    { keys: "Control+a", description: "Tümünü Seç" }
 ];
 
 let currentShortcutIndex = 0;
