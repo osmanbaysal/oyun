@@ -1,7 +1,7 @@
 const shortcuts = [
     { keys: "Control+c", description: "Kopyala" },
-    { keys: "Control+v", description: "Yapıştır" },
     { keys: "Control+x", description: "Kes" },
+    { keys: "Control+v", description: "Yapıştır" },
     { keys: "Control+z", description: "Geri al" },
     { keys: "Control+y", description: "İleri al" },
     { keys: "Control+a", description: "Tümünü Seç" },
