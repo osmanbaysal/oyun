@@ -4,7 +4,6 @@ const shortcuts = [
     { keys: "Control+x", description: "Kes" },
     { keys: "Control+z", description: "Geri al" },
     { keys: "Control+y", description: "İleri al" },
-    { keys: "Alt+Tab", description: "Pencere Değiştir" },
     { keys: "Shift+Delete", description: "Kalıcı Sil" }
 ];
 
