@@ -3,83 +3,85 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Bilgisayar Kasası Toplama Oyunu</title>
+    <title>Farenin Görevleri</title>
     <style>
         body {
             font-family: Arial, sans-serif;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            height: 100vh;
-            margin: 0;
-            background-color: #f4f4f4;
         }
         .container {
             display: flex;
-            justify-content: space-between;
-            width: 80%;
+            justify-content: space-around;
+            margin-top: 50px;
         }
-        .parts, .case {
-            border: 1px solid #ccc;
-            padding: 10px;
-            width: 45%;
-            background-color: #fff;
+        .box {
+            border: 2px solid #000;
+            width: 150px;
+            height: 150px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 10px;
         }
-        .part {
+        .task {
             padding: 10px;
-            margin-bottom: 10px;
-            border: 1px solid #000;
-            background-color: #e3e3e3;
+            border: 2px solid #000;
             cursor: grab;
-        }
-        .slot {
-            padding: 20px;
-            margin-bottom: 10px;
-            border: 1px dashed #000;
-            text-align: center;
             background-color: #f9f9f9;
+        }
+        .correct {
+            background-color: #a8e6cf;
+        }
+        .wrong {
+            background-color: #ff8b94;
         }
     </style>
 </head>
 <body>
-
-<h1>Bilgisayar Kasası Toplama Oyunu</h1>
-<div class="container">
-    <div class="parts">
-        <div id="cpu" class="part" draggable="true">CPU</div>
-        <div id="gpu" class="part" draggable="true">GPU</div>
-        <div id="ram" class="part" draggable="true">RAM</div>
-        <div id="hdd" class="part" draggable="true">HDD</div>
+    <h1>Farenin Görevleri</h1>
+    <div class="container">
+        <div id="drag1" class="task" draggable="true" ondragstart="drag(event)">Sol Tıklama</div>
+        <div id="drag2" class="task" draggable="true" ondragstart="drag(event)">Sağ Tıklama</div>
+        <div id="drag3" class="task" draggable="true" ondragstart="drag(event)">Çift Tıklama</div>
     </div>
-    <div class="case">
-        <div id="cpu-slot" class="slot">CPU Yuvası</div>
-        <div id="gpu-slot" class="slot">GPU Yuvası</div>
-        <div id="ram-slot" class="slot">RAM Yuvası</div>
-        <div id="hdd-slot" class="slot">HDD Yuvası</div>
+    <div class="container">
+        <div id="drop1" class="box" ondrop="drop(event)" ondragover="allowDrop(event)">Buraya Bırak</div>
+        <div id="drop2" class="box" ondrop="drop(event)" ondragover="allowDrop(event)">Buraya Bırak</div>
+        <div id="drop3" class="box" ondrop="drop(event)" ondragover="allowDrop(event)">Buraya Bırak</div>
     </div>
-</div>
-
-<script>
-    document.addEventListener('dragstart', function(event) {
-        event.dataTransfer.setData('text', event.target.id);
-    });
-
-    document.addEventListener('dragover', function(event) {
-        event.preventDefault();
-    });
-
-    document.addEventListener('drop', function(event) {
-        event.preventDefault();
-        const id = event.dataTransfer.getData('text');
-        const draggableElement = document.getElementById(id);
-        const dropzone = event.target;
-
-        if (dropzone.classList.contains('slot') && dropzone.children.length === 0) {
-            dropzone.appendChild(draggableElement);
+    <script>
+        function allowDrop(ev) {
+            ev.preventDefault();
         }
-    });
-</script>
 
+        function drag(ev) {
+            ev.dataTransfer.setData("text", ev.target.id);
+        }
+
+        function drop(ev) {
+            ev.preventDefault();
+            var data = ev.dataTransfer.getData("text");
+            var draggedElement = document.getElementById(data);
+            var dropZone = ev.target;
+
+            if (dropZone.classList.contains('box') && dropZone.children.length === 0) {
+                dropZone.appendChild(draggedElement);
+                if (checkMatch(draggedElement, dropZone)) {
+                    dropZone.classList.add('correct');
+                } else {
+                    dropZone.classList.add('wrong');
+                }
+            }
+        }
+
+        function checkMatch(draggedElement, dropZone) {
+            // Eşleşme kontrolü burada yapılacak
+            if ((draggedElement.id === "drag1" && dropZone.id === "drop1") ||
+                (draggedElement.id === "drag2" && dropZone.id === "drop2") ||
+                (draggedElement.id === "drag3" && dropZone.id === "drop3")) {
+                return true;
+            }
+            return false;
+        }
+    </script>
 </body>
 </html>
