@@ -1,26 +1,41 @@
-document.addEventListener('DOMContentLoaded', (event) => {
-    const components = document.querySelectorAll('.component');
-    const caseArea = document.getElementById('case');
+function allowDrop(ev) {
+    ev.preventDefault();
+}
 
-    components.forEach(component => {
-        component.addEventListener('dragstart', dragStart);
-    });
+function drag(ev) {
+    ev.dataTransfer.setData("text", ev.target.id);
+}
 
-    caseArea.addEventListener('dragover', dragOver);
-    caseArea.addEventListener('drop', drop);
+function drop(ev) {
+    ev.preventDefault();
+    var data = ev.dataTransfer.getData("text");
+    var draggedElement = document.getElementById(data);
+    var dropZone = ev.target;
 
-    function dragStart(event) {
-        event.dataTransfer.setData('text', event.target.id);
+    if (dropZone.classList.contains('box') && dropZone.children.length === 0) {
+        dropZone.appendChild(draggedElement);
+        if (checkMatch(draggedElement, dropZone)) {
+            dropZone.classList.remove('wrong');
+            dropZone.classList.add('correct');
+            updateFeedback("Doğru!");
+        } else {
+            dropZone.classList.remove('correct');
+            dropZone.classList.add('wrong');
+            updateFeedback("Yanlış eşleşme!");
+        }
     }
+}
 
-    function dragOver(event) {
-        event.preventDefault();
+function checkMatch(draggedElement, dropZone) {
+    if ((draggedElement.id === "drag1" && dropZone.id === "drop1") ||
+        (draggedElement.id === "drag2" && dropZone.id === "drop2") ||
+        (draggedElement.id === "drag3" && dropZone.id === "drop3")) {
+        return true;
     }
+    return false;
+}
 
-    function drop(event) {
-        event.preventDefault();
-        const data = event.dataTransfer.getData('text');
-        const component = document.getElementById(data);
-        caseArea.appendChild(component);
-    }
-});
+function updateFeedback(message) {
+    var feedbackElement = document.getElementById("feedback");
+    feedbackElement.textContent = message;
+}
