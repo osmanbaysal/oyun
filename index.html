@@ -3,22 +3,40 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Farenin Görevleri Oyunu</title>
-    <link rel="stylesheet" href="styles.css">
+    <title>Klavye Kısayolları Oyunu</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f0f0f0;
+        }
+        #game-container {
+            text-align: center;
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .shortcut {
+            font-size: 1.5em;
+            margin: 20px 0;
+        }
+        .message {
+            font-size: 1.2em;
+            color: green;
+        }
+    </style>
 </head>
 <body>
-    <h1>Farenin Görevleri Oyunu</h1>
-    <div class="container">
-        <div id="drag1" class="task" draggable="true" ondragstart="drag(event)">Sol Tıklama</div>
-        <div id="drag2" class="task" draggable="true" ondragstart="drag(event)">Sağ Tıklama</div>
-        <div id="drag3" class="task" draggable="true" ondragstart="drag(event)">Çift Tıklama</div>
+    <div id="game-container">
+        <h1>Klavye Kısayolları Oyunu</h1>
+        <div class="shortcut" id="shortcut-display">Ctrl + C</div>
+        <div class="message" id="message-display"></div>
     </div>
-    <div class="container">
-        <div id="drop1" class="box" ondrop="drop(event)" ondragover="allowDrop(event)">Sol Tıklama</div>
-        <div id="drop2" class="box" ondrop="drop(event)" ondragover="allowDrop(event)">Sağ Tıklama</div>
-        <div id="drop3" class="box" ondrop="drop(event)" ondragover="allowDrop(event)">Çift Tıklama</div>
-    </div>
-    <div id="feedback" class="feedback"></div>
+
     <script src="script.js"></script>
 </body>
 </html>

@@ -1,41 +1,35 @@
-function allowDrop(ev) {
-    ev.preventDefault();
+const shortcuts = [
+    { keys: "Control+c", description: "Kopyala" },
+    { keys: "Control+v", description: "Yapıştır" },
+    { keys: "Control+x", description: "Kes" },
+    { keys: "Control+z", description: "Geri al" },
+    { keys: "Control+y", description: "İleri al" }
+];
+
+let currentShortcutIndex = 0;
+const shortcutDisplay = document.getElementById('shortcut-display');
+const messageDisplay = document.getElementById('message-display');
+
+function displayShortcut(index) {
+    shortcutDisplay.textContent = shortcuts[index].keys.replace("+", " + ");
+    messageDisplay.textContent = '';
 }
 
-function drag(ev) {
-    ev.dataTransfer.setData("text", ev.target.id);
-}
+function checkShortcut(event) {
+    const pressedKeys = [];
+    if (event.ctrlKey) pressedKeys.push('Control');
+    if (event.shiftKey) pressedKeys.push('Shift');
+    if (event.altKey) pressedKeys.push('Alt');
+    if (event.key && event.key.length === 1) pressedKeys.push(event.key.toLowerCase());
 
-function drop(ev) {
-    ev.preventDefault();
-    var data = ev.dataTransfer.getData("text");
-    var draggedElement = document.getElementById(data);
-    var dropZone = ev.target;
+    const pressedKeysString = pressedKeys.join('+').toLowerCase();
 
-    if (dropZone.classList.contains('box') && dropZone.children.length === 0) {
-        dropZone.appendChild(draggedElement);
-        if (checkMatch(draggedElement, dropZone)) {
-            dropZone.classList.remove('wrong');
-            dropZone.classList.add('correct');
-            updateFeedback("Doğru!");
-        } else {
-            dropZone.classList.remove('correct');
-            dropZone.classList.add('wrong');
-            updateFeedback("Yanlış eşleşme!");
-        }
+    if (pressedKeysString === shortcuts[currentShortcutIndex].keys.toLowerCase()) {
+        messageDisplay.textContent = `Doğru! ${shortcuts[currentShortcutIndex].description}`;
+        currentShortcutIndex = (currentShortcutIndex + 1) % shortcuts.length;
+        setTimeout(() => displayShortcut(currentShortcutIndex), 2000);
     }
 }
 
-function checkMatch(draggedElement, dropZone) {
-    if ((draggedElement.id === "drag1" && dropZone.id === "drop1") ||
-        (draggedElement.id === "drag2" && dropZone.id === "drop2") ||
-        (draggedElement.id === "drag3" && dropZone.id === "drop3")) {
-        return true;
-    }
-    return false;
-}
-
-function updateFeedback(message) {
-    var feedbackElement = document.getElementById("feedback");
-    feedbackElement.textContent = message;
-}
+displayShortcut(currentShortcutIndex);
+document.addEventListener('keydown', checkShortcut);
