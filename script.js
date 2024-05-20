@@ -3,8 +3,7 @@ const shortcuts = [
     { keys: "Control+v", description: "Yapıştır" },
     { keys: "Control+x", description: "Kes" },
     { keys: "Control+z", description: "Geri al" },
-    { keys: "Control+y", description: "İleri al" },
-    { keys: "Shift+Delete", description: "Kalıcı Sil" }
+    { keys: "Control+y", description: "İleri al" }
 ];
 
 let currentShortcutIndex = 0;
@@ -25,6 +24,7 @@ function checkShortcut(event) {
     const pressedKeys = [];
     if (event.ctrlKey) pressedKeys.push('Control');
     if (event.shiftKey) pressedKeys.push('Shift');
+    if (event.altKey) pressedKeys.push('Alt');
     if (event.key && event.key.length === 1) pressedKeys.push(event.key.toLowerCase());
 
     const pressedKeysString = pressedKeys.join('+').toLowerCase();
